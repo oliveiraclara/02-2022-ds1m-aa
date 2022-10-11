@@ -27,10 +27,30 @@ public class PlanosDeSaudeDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        setBounds(0, 0, 416, 308);
+        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel1.setLayout(null);
+
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Nova especialidade");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(90, 20, 500, 40);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/agendaa.png"))); // NOI18N
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(10, 10, 70, 60);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 670, 80);
+
+        setBounds(0, 0, 687, 453);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -76,5 +96,8 @@ public class PlanosDeSaudeDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
