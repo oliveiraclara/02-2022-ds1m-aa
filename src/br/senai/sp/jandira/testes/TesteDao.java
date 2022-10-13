@@ -14,7 +14,7 @@ public class TesteDao {
         
         String[][] linhas = {linha0, linha1, linha2, linha3};
 
-        System.out.println(linhas[2][2]);
+        //System.out.println(linhas[2][2]);
         
         String[][][] frutas = {
             {
@@ -33,7 +33,7 @@ public class TesteDao {
             }
         };
         
-        System.out.println(frutas[1][1][1]);
+        //System.out.println(frutas[1][1][1]);
         //System.out.println(frutas[0][1]);
        // System.out.println(frutas[2][2]);
         
@@ -44,10 +44,10 @@ public class TesteDao {
         PlanoDeSaude plano4 = new PlanoDeSaude("Notredame", "Advanced");
         PlanoDeSaude plano5 = new PlanoDeSaude();
 
-        System.out.println(PlanoDeSaude.getContador());
+        //System.out.println(PlanoDeSaude.getContador());
 
-        System.out.println(plano1.getCodigo());
-        System.out.println(plano5.getCodigo());
+        //System.out.println(plano1.getCodigo());
+        //System.out.println(plano5.getCodigo());
 
         PlanoDeSaudeDAO.gravar(plano1);
         PlanoDeSaudeDAO.gravar(plano4);
@@ -55,6 +55,14 @@ public class TesteDao {
         PlanoDeSaudeDAO.gravar(plano2);
         PlanoDeSaudeDAO.gravar(plano5);
 
+        System.out.println("---------------------------------------");
+        for (PlanoDeSaude p : PlanoDeSaudeDAO.listarTodos()) {
+            System.out.println("Código: " + p.getCodigo());
+            System.out.println("Operadora: " + p.getOperadora());
+            System.out.println("-------------------------");
+        }
+        
+        PlanoDeSaudeDAO.excluir(100);
         System.out.println("---------------------------------------");
         for (PlanoDeSaude p : PlanoDeSaudeDAO.listarTodos()) {
             System.out.println("Código: " + p.getCodigo());

@@ -4,6 +4,10 @@
  */
 package br.senai.sp.jandira.ui;
 
+import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
+import br.senai.sp.jandira.model.PlanoDeSaude;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 22282080
@@ -30,28 +34,137 @@ public class PlanosDeSaudeDialog extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        tipoDoPlano = new javax.swing.JLabel();
+        codigoDoPlano = new javax.swing.JLabel();
+        nomeDoPlano = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textTipoDoPlano = new javax.swing.JTextPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextPane2 = new javax.swing.JTextPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        textNomeDaOperadora = new javax.swing.JTextPane();
+        buttonCancelar = new javax.swing.JButton();
+        buttonSalvar = new javax.swing.JButton();
+        detalhesPlanoDeSaude = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
         jPanel1.setLayout(null);
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Nova especialidade");
+        jLabel3.setText("Plano de Saúde - Adicionar");
         jPanel1.add(jLabel3);
         jLabel3.setBounds(90, 20, 500, 40);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/agendaa.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/addPlano64.png"))); // NOI18N
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(10, 10, 70, 60);
+        jLabel4.setBounds(10, 10, 70, 70);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 670, 80);
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setLayout(null);
+
+        tipoDoPlano.setText("Tipo do plano:");
+        jPanel2.add(tipoDoPlano);
+        tipoDoPlano.setBounds(20, 160, 80, 16);
+
+        codigoDoPlano.setText("Código:");
+        jPanel2.add(codigoDoPlano);
+        codigoDoPlano.setBounds(20, 50, 50, 16);
+
+        nomeDoPlano.setText("Nome:");
+        jPanel2.add(nomeDoPlano);
+        nomeDoPlano.setBounds(20, 100, 50, 16);
+
+        jScrollPane1.setViewportView(textTipoDoPlano);
+
+        jPanel2.add(jScrollPane1);
+        jScrollPane1.setBounds(20, 180, 260, 22);
+
+        jTextPane2.setEditable(false);
+        jScrollPane2.setViewportView(jTextPane2);
+
+        jPanel2.add(jScrollPane2);
+        jScrollPane2.setBounds(20, 70, 80, 22);
+
+        jScrollPane3.setViewportView(textNomeDaOperadora);
+
+        jPanel2.add(jScrollPane3);
+        jScrollPane3.setBounds(20, 120, 260, 22);
+
+        buttonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/delete.png"))); // NOI18N
+        buttonCancelar.setToolTipText("Cancelar");
+        buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(buttonCancelar);
+        buttonCancelar.setBounds(450, 230, 70, 60);
+
+        buttonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/save32.png"))); // NOI18N
+        buttonSalvar.setToolTipText("Salvar novo plano");
+        buttonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSalvarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(buttonSalvar);
+        buttonSalvar.setBounds(540, 230, 70, 60);
+
+        detalhesPlanoDeSaude.setText("Detalhes do Plano de Saúde ");
+        jPanel2.add(detalhesPlanoDeSaude);
+        detalhesPlanoDeSaude.setBounds(20, 10, 150, 16);
+
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(20, 110, 630, 300);
+
         setBounds(0, 0, 687, 453);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
+        //Criar o objeto plano de saúde
+        PlanoDeSaude planoDeSaude = new PlanoDeSaude();
+        planoDeSaude.setOperadora(textNomeDaOperadora.getText());
+        planoDeSaude.setTipoDoPlano(textTipoDoPlano.getText());
+        
+        if(validarCadastro()){
+            PlanoDeSaudeDAO.gravar(planoDeSaude);
+            JOptionPane.showMessageDialog(this, 
+                    "Plano de saúde gravado com sucesso.", 
+                    "Plano de saúde", 
+                    JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+        }
+    }//GEN-LAST:event_buttonSalvarActionPerformed
+    private boolean validarCadastro(){
+        if (textNomeDaOperadora.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, 
+                    "Por favor preencha o nome do plano.", 
+                    "ERRO", 
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (textTipoDoPlano.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, 
+                    "Por favor preencha o tipo do plano.", 
+                    "ERRO", 
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+    private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
+        
+        dispose();
+    }//GEN-LAST:event_buttonCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -81,7 +194,7 @@ public class PlanosDeSaudeDialog extends javax.swing.JDialog {
         //</editor-fold>
 
         /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable(){
             public void run() {
                 PlanosDeSaudeDialog dialog = new PlanosDeSaudeDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -96,8 +209,21 @@ public class PlanosDeSaudeDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonCancelar;
+    private javax.swing.JButton buttonSalvar;
+    private javax.swing.JLabel codigoDoPlano;
+    private javax.swing.JLabel detalhesPlanoDeSaude;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextPane jTextPane2;
+    private javax.swing.JLabel nomeDoPlano;
+    private javax.swing.JTextPane textNomeDaOperadora;
+    private javax.swing.JTextPane textTipoDoPlano;
+    private javax.swing.JLabel tipoDoPlano;
     // End of variables declaration//GEN-END:variables
 }
