@@ -1,11 +1,17 @@
 package br.senai.sp.jandira.ui;
 
+import br.senai.sp.jandira.dao.EspecialidadeDAO;
 import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
+import java.util.Locale;
 import javax.swing.JTable;
+import br.senai.sp.jandira.ui.EspecialidadesPanel;
+import java.awt.PopupMenu;
+
 
 public class HomeFrame extends javax.swing.JFrame {
     
     private PlanoDeSaudePanel planosDeSaudePanel;
+    private EspecialidadesPanel especialidadePanel;
     
     private final int POSICAO_X = 10;
     private final int POSICAO_Y = 180;
@@ -15,6 +21,7 @@ public class HomeFrame extends javax.swing.JFrame {
     public HomeFrame() {
         initComponents();
         PlanoDeSaudeDAO.criarPlanosDeSaudeTeste();
+        EspecialidadeDAO.criarEspecialidadesTeste();
         initPanels();
     }
 
@@ -168,7 +175,9 @@ public class HomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonPacientesActionPerformed
 
     private void buttonEspecialidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEspecialidadesActionPerformed
-
+        especialidadePanel.setVisible(true);
+        panelHome.setVisible(false);
+        planosDeSaudePanel.setVisible(false);
     }//GEN-LAST:event_buttonEspecialidadesActionPerformed
 
     private void buttonPlanosDeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPlanosDeSaudeActionPerformed
@@ -179,9 +188,10 @@ public class HomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonPlanosDeSaudeActionPerformed
 
     private void buttonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHomeActionPerformed
-       buttonHome.setBackground(new java.awt.Color(255, 102, 102));
+        buttonHome.setBackground(new java.awt.Color(255, 102, 102));
         buttonPlanosDeSaude.setBackground(new java.awt.Color(255, 255, 255));
         planosDeSaudePanel.setVisible(false);
+        especialidadePanel.setVisible(false);
         panelHome.setVisible(true);
     }//GEN-LAST:event_buttonHomeActionPerformed
 
@@ -208,12 +218,17 @@ public class HomeFrame extends javax.swing.JFrame {
 
     private void initPanels(){
         
-        planosDeSaudePanel = new PlanoDeSaudePanel();
+       planosDeSaudePanel = new PlanoDeSaudePanel();
        planosDeSaudePanel.setBounds(
                POSICAO_X, POSICAO_Y, 
                POSICAO_LARGURA, POSICAO_ALTURA);
-        getContentPane().add(planosDeSaudePanel);
-        planosDeSaudePanel.setVisible(false);
-        
+       getContentPane().add(planosDeSaudePanel);
+       planosDeSaudePanel.setVisible(false);
+       
+       especialidadePanel = new EspecialidadesPanel();
+       especialidadePanel.setBounds(
+               POSICAO_X, POSICAO_Y, 
+               POSICAO_LARGURA, POSICAO_ALTURA);
+       getContentPane().add(especialidadePanel);
     }
 }

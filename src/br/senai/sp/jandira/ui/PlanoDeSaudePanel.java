@@ -35,7 +35,7 @@ public class PlanoDeSaudePanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(945, 370));
         setLayout(null);
 
-        jLabel3.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 102, 102));
         jLabel3.setText("Planos de saúde");
         add(jLabel3);
