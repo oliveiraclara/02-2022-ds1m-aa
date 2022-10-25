@@ -20,6 +20,24 @@ public class EspecialidadeDAO {
     public static void gravar(Especialidade especialidade) {
         especialidades.add(especialidade);
     }
+    public static boolean excluir(Integer codigo) {
+        for (Especialidade e : especialidades) {
+            if (e.getCodigo().equals(codigo)) {
+                especialidades.remove(e);
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public static void atualizar(Especialidade especialidade){
+        for(Especialidade e : especialidades){
+            if(e.getCodigo().equals(especialidade.getCodigo())){
+                especialidades.set(especialidades.indexOf(e), especialidade);
+                break;
+            }
+        }
+    }
 
     public static Especialidade getEspecialidade(Integer codigo) {
         for (Especialidade e : especialidades) {
@@ -35,10 +53,12 @@ public class EspecialidadeDAO {
     }
 
     public static void criarEspecialidadesTeste() {
-        Especialidade e1 = new Especialidade("Cardiologia", "cuida do coração");
-        Especialidade e2 = new Especialidade("Fisioterapia", "Cuida dos ossos");
+        Especialidade e1 = new Especialidade("Cardiologia", "Cuida do coração");
+        Especialidade e2 = new Especialidade("Fisioterapia", "Cuida dos ossos e músculos");
+        Especialidade e3 = new Especialidade("Otorrino ", "Cuida do ouvido");
         especialidades.add(e1);
         especialidades.add(e2);
+        especialidades.add(e3);
 }
     public static DefaultTableModel getTableModel() {
 
