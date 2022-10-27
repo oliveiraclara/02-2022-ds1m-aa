@@ -49,7 +49,7 @@ public class EspecialidadesPanel extends javax.swing.JPanel {
         scrollTableEspecialidades.setBounds(20, 40, 905, 240);
 
         buttonExcluirEspecialidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/delete.png"))); // NOI18N
-        buttonExcluirEspecialidade.setToolTipText("Excluir plano de saúde selecionado");
+        buttonExcluirEspecialidade.setToolTipText("Excluir especialidade selecionada");
         buttonExcluirEspecialidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonExcluirEspecialidadeActionPerformed(evt);
@@ -59,7 +59,7 @@ public class EspecialidadesPanel extends javax.swing.JPanel {
         buttonExcluirEspecialidade.setBounds(700, 294, 70, 60);
 
         buttonAlterarEspecialidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/edit.png"))); // NOI18N
-        buttonAlterarEspecialidade.setToolTipText("Editar plano de saúde selecionado");
+        buttonAlterarEspecialidade.setToolTipText("Editar especialidade selecionada");
         buttonAlterarEspecialidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAlterarEspecialidadeActionPerformed(evt);
@@ -69,7 +69,7 @@ public class EspecialidadesPanel extends javax.swing.JPanel {
         buttonAlterarEspecialidade.setBounds(780, 294, 70, 60);
 
         buttonAdicionarEspecialidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/add.png"))); // NOI18N
-        buttonAdicionarEspecialidade.setToolTipText("Adicionar plano de saúde");
+        buttonAdicionarEspecialidade.setToolTipText("Adicionar especialidade");
         buttonAdicionarEspecialidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAdicionarEspecialidadeActionPerformed(evt);
@@ -106,6 +106,7 @@ public class EspecialidadesPanel extends javax.swing.JPanel {
                     "Por favor, selecione a especialidade que você deseja alterar",
                     "Especialidades",
                     JOptionPane.WARNING_MESSAGE);
+            criarTabelaEspecialidades();
         }
     }//GEN-LAST:event_buttonAlterarEspecialidadeActionPerformed
 
@@ -139,6 +140,7 @@ public class EspecialidadesPanel extends javax.swing.JPanel {
                 true,
                 TipoOperacao.ALTERAR, especialidade);
         especialidadesDialog.setVisible(true);
+        criarTabelaEspecialidades();
     }
   private Integer getCodigoSelecionado() {
         String codigoStr = tableEspecialidades.getValueAt(linha, 0).toString();
