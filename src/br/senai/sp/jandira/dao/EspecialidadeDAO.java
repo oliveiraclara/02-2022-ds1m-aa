@@ -5,7 +5,16 @@
 package br.senai.sp.jandira.dao;
 
 import br.senai.sp.jandira.model.Especialidade;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class EspecialidadeDAO {
@@ -16,6 +25,8 @@ public class EspecialidadeDAO {
     public EspecialidadeDAO() {
 
     }
+    
+
 
     public static void gravar(Especialidade especialidade) {
         especialidades.add(especialidade);

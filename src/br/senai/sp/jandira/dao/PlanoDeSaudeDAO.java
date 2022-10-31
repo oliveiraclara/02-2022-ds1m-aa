@@ -3,23 +3,51 @@ package br.senai.sp.jandira.dao;
 import java.util.ArrayList;
 
 import br.senai.sp.jandira.model.PlanoDeSaude;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class PlanoDeSaudeDAO { // Simular nosso banco de dados
 
     private PlanoDeSaude planoDeSaude;
     private static ArrayList<PlanoDeSaude> planos = new ArrayList<>();
+    private final static String ARQUIVO = "C:\\Users\\22282080\\JavaProject\\plano_de_saude.txt";
+    private static final Path PATH = Paths.get(ARQUIVO);
 
     public PlanoDeSaudeDAO(PlanoDeSaude planoDeSaude) {
         this.planos.add(planoDeSaude);
     }
 
     public PlanoDeSaudeDAO() {
-
+         
     }
 
     public static void gravar(PlanoDeSaude planoDeSaude) {
         planos.add(planoDeSaude);
+        
+        
+        try {
+            BufferedWriter bw = Files.newBufferedWriter(PATH, 
+                    StandardOpenOption.APPEND,
+                    StandardOpenOption.WRITE);
+            bw.write(planoDeSaude.getPlanoDeSaudeSeparadoPorPontoEVirgula());
+            bw.newLine();
+            bw.close();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, 
+                    "O arquivo não existe", "Erro ao gravar", 
+                    JOptionPane.ERROR_MESSAGE );
+        }
+        
+        
+        
     }
 
     public static boolean excluir(Integer codigo) {
