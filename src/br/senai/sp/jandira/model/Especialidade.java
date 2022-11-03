@@ -22,9 +22,18 @@ public class Especialidade {
         atualizarCodigo();
     }
 
+    public Especialidade(Integer codigo, String nome, String descricao) {
+        this.codigo = codigo;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.contador = this.codigo;
+
+    }
+
     private void atualizarCodigo() {
-        this.codigo = contador;
         contador++;
+        this.codigo = contador;
+
     }
     // Métodos de acesso getters and setters
 
@@ -52,6 +61,9 @@ public class Especialidade {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    public String getEspecialidadeSeparadaPorPontoEVirgula() {
+        String especialidadeStr = this.codigo + ";" + this.nome + ";" + this.descricao;
+        return especialidadeStr;
+    }
 
-    
 }

@@ -25,8 +25,8 @@ public class HomeFrame extends javax.swing.JFrame {
         URL caminhoIcone = getClass().getResource("/br/senai/sp/jandira/imagens/icon.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(caminhoIcone);
         this.setIconImage(iconeTitulo);
-        PlanoDeSaudeDAO.criarPlanosDeSaudeTeste();
-        EspecialidadeDAO.criarEspecialidadesTeste();
+        PlanoDeSaudeDAO.getListaPlanosDeSaude();
+        EspecialidadeDAO.getListaEspecialidade();
         initPanels();
     }
 

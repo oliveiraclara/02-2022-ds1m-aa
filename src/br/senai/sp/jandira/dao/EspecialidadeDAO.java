@@ -5,7 +5,9 @@
 package br.senai.sp.jandira.dao;
 
 import br.senai.sp.jandira.model.Especialidade;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -22,28 +24,71 @@ public class EspecialidadeDAO {
     private Especialidade especialidade;
     private static ArrayList<Especialidade> especialidades = new ArrayList<>();
 
+    private final static String ARQUIVO = "C:\\Users\\22282080\\JavaProject\\especialidade.txt";
+    private final static String ARQUIVO_TEMP = "C:\\Users\\22282080\\JavaProject\\especialidade_temp.txt";
+    private final static Path PATH = Paths.get(ARQUIVO);
+    private final static Path PATH_TEMP = Paths.get(ARQUIVO_TEMP);
+
     public EspecialidadeDAO() {
 
     }
-    
-
 
     public static void gravar(Especialidade especialidade) {
         especialidades.add(especialidade);
+
+        try {
+            BufferedWriter bw = Files.newBufferedWriter(
+                    PATH,
+                    StandardOpenOption.APPEND,
+                    StandardOpenOption.WRITE);
+
+            String novaEspecialidade = especialidade.getEspecialidadeSeparadaPorPontoEVirgula();
+
+            bw.write(novaEspecialidade);
+            bw.newLine();
+            bw.close();
+
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "");
+
+        }
     }
+
     public static boolean excluir(Integer codigo) {
         for (Especialidade e : especialidades) {
             if (e.getCodigo().equals(codigo)) {
                 especialidades.remove(e);
-                return true;
+                break;
             }
         }
+
+        File arquivoAtual = new File(ARQUIVO);
+        File arquivoTemp = new File(ARQUIVO_TEMP);
+
+        try {
+            arquivoTemp.createNewFile();
+
+            BufferedWriter bwTemp = Files.newBufferedWriter(PATH_TEMP,
+                    StandardOpenOption.APPEND,
+                    StandardOpenOption.WRITE);
+
+            for (Especialidade e : especialidades) {
+                bwTemp.write(e.getEspecialidadeSeparadaPorPontoEVirgula());
+                bwTemp.newLine();
+            }
+            bwTemp.close();
+            arquivoAtual.delete();
+            arquivoTemp.renameTo(arquivoAtual);
+        } catch (IOException ex) {
+            Logger.getLogger(EspecialidadeDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         return false;
     }
-    
-    public static void atualizar(Especialidade especialidade){
-        for(Especialidade e : especialidades){
-            if(e.getCodigo().equals(especialidade.getCodigo())){
+
+    public static void atualizar(Especialidade especialidade) {
+        for (Especialidade e : especialidades) {
+            if (e.getCodigo().equals(especialidade.getCodigo())) {
                 especialidades.set(especialidades.indexOf(e), especialidade);
                 break;
             }
@@ -63,14 +108,32 @@ public class EspecialidadeDAO {
         return especialidades;
     }
 
-    public static void criarEspecialidadesTeste() {
-        Especialidade e1 = new Especialidade("Cardiologia", "Cuida do coração");
-        Especialidade e2 = new Especialidade("Fisioterapia", "Cuida dos ossos e músculos");
-        Especialidade e3 = new Especialidade("Otorrino ", "Cuida do ouvido");
-        especialidades.add(e1);
-        especialidades.add(e2);
-        especialidades.add(e3);
-}
+    public static void getListaEspecialidade() {
+        try {
+            BufferedReader br = Files.newBufferedReader(PATH);
+
+            String linha = br.readLine();
+
+            while (linha != null && !linha.isEmpty()) {
+                String[] linhaVetor = linha.split(";");
+                Especialidade novaEspecialidade = new Especialidade(
+                        Integer.valueOf(linhaVetor[0]),
+                        linhaVetor[1],
+                        linhaVetor[2]);
+                especialidades.add(novaEspecialidade);
+                linha = br.readLine();
+            }
+            br.close();
+
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null,
+                    "Ocorreu um erro ao abrir o arquivo",
+                    "Erro de leitura",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
+
     public static DefaultTableModel getTableModel() {
 
         // Matriz que receberá os planos de saúde
@@ -95,5 +158,5 @@ public class EspecialidadeDAO {
         DefaultTableModel tableModel = new DefaultTableModel(dados, titulos);
 
         return tableModel;
-}
+    }
 }
