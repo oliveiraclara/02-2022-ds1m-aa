@@ -62,10 +62,12 @@ public class PlanoDeSaudeDAO { // Simular nosso banco de dados
                 break;
             }
         }
-            File arquivoAtual = new File(ARQUIVO);
+        atualizarCodigo();
+        return false;
+    }
+     private static void atualizarCodigo(){
+         File arquivoAtual = new File(ARQUIVO);
             File arquivoTemp = new File(ARQUIVO_TEMP);
-            
-            
             
             try {
                 arquivoTemp.createNewFile();
@@ -91,10 +93,8 @@ public class PlanoDeSaudeDAO { // Simular nosso banco de dados
                         "Erro", 
                         JOptionPane.ERROR_MESSAGE);
             }
-        
-        return false;
-    }
-
+     }
+    
     public static PlanoDeSaude getPlanoDeSaude(Integer codigo) {
 
         for (PlanoDeSaude p : planos) {
@@ -111,6 +111,7 @@ public class PlanoDeSaudeDAO { // Simular nosso banco de dados
                 planos.set(planos.indexOf(p), planoDeSaude);
                 break;
             }
+            atualizarCodigo();
         }
     }
 
