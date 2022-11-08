@@ -43,33 +43,33 @@ public class MedicoDialog extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         labelTitulo = new javax.swing.JLabel();
         iconTitulo = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        tipoDoPlano1 = new javax.swing.JLabel();
-        labelCodigo1 = new javax.swing.JLabel();
-        nomeDoPlano1 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        textTipoDoPlano1 = new javax.swing.JTextPane();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        textFieldCodigo1 = new javax.swing.JTextPane();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        textNomeDaOperadora1 = new javax.swing.JTextPane();
-        buttonCancelar1 = new javax.swing.JButton();
-        buttonSalvar1 = new javax.swing.JButton();
-        detalhesPlanoDeSaude1 = new javax.swing.JLabel();
-        labelCodigo2 = new javax.swing.JLabel();
-        labelCodigo3 = new javax.swing.JLabel();
-        labelCodigo4 = new javax.swing.JLabel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        textTipoDoPlano2 = new javax.swing.JTextPane();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        textNomeDaOperadora2 = new javax.swing.JTextPane();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        textTipoDoPlano3 = new javax.swing.JTextPane();
-        labelCodigo5 = new javax.swing.JLabel();
-        labelCodigo6 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         labelTitulo1 = new javax.swing.JLabel();
         iconTitulo1 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        detalhesMedico = new javax.swing.JLabel();
+        labelCodigo2 = new javax.swing.JLabel();
+        crm = new javax.swing.JLabel();
+        nomeDoMedico = new javax.swing.JLabel();
+        labelTelefone = new javax.swing.JLabel();
+        labelEmail = new javax.swing.JLabel();
+        labelDataDeNascimento = new javax.swing.JLabel();
+        labelListaDeEspecialidades = new javax.swing.JLabel();
+        labelEspecialidadesDosMedicos = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        textTelefone = new javax.swing.JTextPane();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        textFieldCodigo1 = new javax.swing.JTextPane();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        textEmail = new javax.swing.JTextPane();
+        buttonCancelar1 = new javax.swing.JButton();
+        buttonSalvar1 = new javax.swing.JButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        textDataDeNascimento = new javax.swing.JTextPane();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        textNomeDoMedico = new javax.swing.JTextPane();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        textCrm = new javax.swing.JTextPane();
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setLayout(null);
@@ -143,22 +143,62 @@ public class MedicoDialog extends javax.swing.JDialog {
         setPreferredSize(new java.awt.Dimension(671, 504));
         getContentPane().setLayout(null);
 
+        jPanel4.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel4.setLayout(null);
+
+        labelTitulo1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        labelTitulo1.setForeground(new java.awt.Color(255, 255, 255));
+        labelTitulo1.setText("Médico - Adicionar");
+        jPanel4.add(labelTitulo1);
+        labelTitulo1.setBounds(90, 20, 500, 40);
+
+        iconTitulo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/addPlano64.png"))); // NOI18N
+        jPanel4.add(iconTitulo1);
+        iconTitulo1.setBounds(10, 10, 70, 70);
+
+        getContentPane().add(jPanel4);
+        jPanel4.setBounds(0, 0, 670, 80);
+
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel3.setLayout(null);
 
-        tipoDoPlano1.setText("CRM:");
-        jPanel3.add(tipoDoPlano1);
-        tipoDoPlano1.setBounds(110, 50, 80, 16);
+        detalhesMedico.setText("Detalhes do Médico:");
+        jPanel3.add(detalhesMedico);
+        detalhesMedico.setBounds(20, 10, 150, 16);
 
-        labelCodigo1.setText("Especialidades dos médicos:");
-        jPanel3.add(labelCodigo1);
-        labelCodigo1.setBounds(240, 170, 160, 16);
+        labelCodigo2.setText("Código:");
+        jPanel3.add(labelCodigo2);
+        labelCodigo2.setBounds(20, 50, 50, 16);
 
-        nomeDoPlano1.setText("Nome do(a) Médico(a):");
-        jPanel3.add(nomeDoPlano1);
-        nomeDoPlano1.setBounds(240, 50, 140, 16);
+        crm.setText("CRM:");
+        jPanel3.add(crm);
+        crm.setBounds(110, 50, 80, 16);
 
-        jScrollPane4.setViewportView(textTipoDoPlano1);
+        nomeDoMedico.setText("Nome do(a) Médico(a):");
+        jPanel3.add(nomeDoMedico);
+        nomeDoMedico.setBounds(240, 50, 140, 16);
+
+        labelTelefone.setText("Telefone:");
+        jPanel3.add(labelTelefone);
+        labelTelefone.setBounds(20, 110, 50, 16);
+
+        labelEmail.setText("E-mail:");
+        jPanel3.add(labelEmail);
+        labelEmail.setBounds(160, 110, 50, 16);
+
+        labelDataDeNascimento.setText("Data de Nascimento:");
+        jPanel3.add(labelDataDeNascimento);
+        labelDataDeNascimento.setBounds(490, 110, 120, 16);
+
+        labelListaDeEspecialidades.setText("Lista de especialidades:");
+        jPanel3.add(labelListaDeEspecialidades);
+        labelListaDeEspecialidades.setBounds(20, 170, 130, 16);
+
+        labelEspecialidadesDosMedicos.setText("Especialidades dos médicos:");
+        jPanel3.add(labelEspecialidadesDosMedicos);
+        labelEspecialidadesDosMedicos.setBounds(240, 170, 160, 16);
+
+        jScrollPane4.setViewportView(textTelefone);
 
         jPanel3.add(jScrollPane4);
         jScrollPane4.setBounds(20, 130, 130, 22);
@@ -169,7 +209,7 @@ public class MedicoDialog extends javax.swing.JDialog {
         jPanel3.add(jScrollPane5);
         jScrollPane5.setBounds(20, 70, 80, 22);
 
-        jScrollPane6.setViewportView(textNomeDaOperadora1);
+        jScrollPane6.setViewportView(textEmail);
 
         jPanel3.add(jScrollPane6);
         jScrollPane6.setBounds(160, 130, 320, 22);
@@ -195,63 +235,23 @@ public class MedicoDialog extends javax.swing.JDialog {
         buttonSalvar1.setBounds(540, 290, 70, 60);
         buttonSalvar1.getAccessibleContext().setAccessibleDescription("Salvar");
 
-        detalhesPlanoDeSaude1.setText("Detalhes do Médico:");
-        jPanel3.add(detalhesPlanoDeSaude1);
-        detalhesPlanoDeSaude1.setBounds(20, 10, 150, 16);
-
-        labelCodigo2.setText("Código:");
-        jPanel3.add(labelCodigo2);
-        labelCodigo2.setBounds(20, 50, 50, 16);
-
-        labelCodigo3.setText("Telefone:");
-        jPanel3.add(labelCodigo3);
-        labelCodigo3.setBounds(20, 110, 50, 16);
-
-        labelCodigo4.setText("E-mail:");
-        jPanel3.add(labelCodigo4);
-        labelCodigo4.setBounds(160, 110, 50, 16);
-
-        jScrollPane7.setViewportView(textTipoDoPlano2);
+        jScrollPane7.setViewportView(textDataDeNascimento);
 
         jPanel3.add(jScrollPane7);
         jScrollPane7.setBounds(490, 130, 120, 22);
 
-        jScrollPane8.setViewportView(textNomeDaOperadora2);
+        jScrollPane8.setViewportView(textNomeDoMedico);
 
         jPanel3.add(jScrollPane8);
         jScrollPane8.setBounds(240, 70, 370, 22);
 
-        jScrollPane9.setViewportView(textTipoDoPlano3);
+        jScrollPane9.setViewportView(textCrm);
 
         jPanel3.add(jScrollPane9);
         jScrollPane9.setBounds(110, 70, 120, 22);
 
-        labelCodigo5.setText("Data de Nascimento:");
-        jPanel3.add(labelCodigo5);
-        labelCodigo5.setBounds(490, 110, 120, 16);
-
-        labelCodigo6.setText("Lista de especialidades:");
-        jPanel3.add(labelCodigo6);
-        labelCodigo6.setBounds(20, 170, 130, 16);
-
         getContentPane().add(jPanel3);
         jPanel3.setBounds(20, 110, 630, 370);
-
-        jPanel4.setBackground(new java.awt.Color(0, 153, 153));
-        jPanel4.setLayout(null);
-
-        labelTitulo1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        labelTitulo1.setForeground(new java.awt.Color(255, 255, 255));
-        labelTitulo1.setText("Médico - Adicionar");
-        jPanel4.add(labelTitulo1);
-        labelTitulo1.setBounds(90, 20, 500, 40);
-
-        iconTitulo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/addPlano64.png"))); // NOI18N
-        jPanel4.add(iconTitulo1);
-        iconTitulo1.setBounds(10, 10, 70, 70);
-
-        getContentPane().add(jPanel4);
-        jPanel4.setBounds(0, 0, 670, 80);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -321,8 +321,9 @@ public class MedicoDialog extends javax.swing.JDialog {
     private javax.swing.JButton buttonCancelar1;
     private javax.swing.JButton buttonSalvar;
     private javax.swing.JButton buttonSalvar1;
+    private javax.swing.JLabel crm;
+    private javax.swing.JLabel detalhesMedico;
     private javax.swing.JLabel detalhesPlanoDeSaude;
-    private javax.swing.JLabel detalhesPlanoDeSaude1;
     private javax.swing.JLabel iconTitulo;
     private javax.swing.JLabel iconTitulo1;
     private javax.swing.JPanel jPanel1;
@@ -339,26 +340,25 @@ public class MedicoDialog extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JLabel labelCodigo;
-    private javax.swing.JLabel labelCodigo1;
     private javax.swing.JLabel labelCodigo2;
-    private javax.swing.JLabel labelCodigo3;
-    private javax.swing.JLabel labelCodigo4;
-    private javax.swing.JLabel labelCodigo5;
-    private javax.swing.JLabel labelCodigo6;
+    private javax.swing.JLabel labelDataDeNascimento;
+    private javax.swing.JLabel labelEmail;
+    private javax.swing.JLabel labelEspecialidadesDosMedicos;
+    private javax.swing.JLabel labelListaDeEspecialidades;
+    private javax.swing.JLabel labelTelefone;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JLabel labelTitulo1;
+    private javax.swing.JLabel nomeDoMedico;
     private javax.swing.JLabel nomeDoPlano;
-    private javax.swing.JLabel nomeDoPlano1;
+    private javax.swing.JTextPane textCrm;
+    private javax.swing.JTextPane textDataDeNascimento;
+    private javax.swing.JTextPane textEmail;
     private javax.swing.JTextPane textFieldCodigo;
     private javax.swing.JTextPane textFieldCodigo1;
     private javax.swing.JTextPane textNomeDaOperadora;
-    private javax.swing.JTextPane textNomeDaOperadora1;
-    private javax.swing.JTextPane textNomeDaOperadora2;
+    private javax.swing.JTextPane textNomeDoMedico;
+    private javax.swing.JTextPane textTelefone;
     private javax.swing.JTextPane textTipoDoPlano;
-    private javax.swing.JTextPane textTipoDoPlano1;
-    private javax.swing.JTextPane textTipoDoPlano2;
-    private javax.swing.JTextPane textTipoDoPlano3;
     private javax.swing.JLabel tipoDoPlano;
-    private javax.swing.JLabel tipoDoPlano1;
     // End of variables declaration//GEN-END:variables
 }
