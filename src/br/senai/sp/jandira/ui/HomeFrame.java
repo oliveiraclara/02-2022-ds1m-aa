@@ -14,6 +14,7 @@ public class HomeFrame extends javax.swing.JFrame {
 
     private PlanoDeSaudePanel planosDeSaudePanel;
     private EspecialidadesPanel especialidadePanel;
+    private MedicoPanel medicoPanel;
 
     private final int POSICAO_X = 10;
     private final int POSICAO_Y = 180;
@@ -126,6 +127,11 @@ public class HomeFrame extends javax.swing.JFrame {
 
         buttonMedicos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/doctor32_1.png"))); // NOI18N
         buttonMedicos.setToolTipText("Médicos");
+        buttonMedicos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMedicosActionPerformed(evt);
+            }
+        });
         getContentPane().add(buttonMedicos);
         buttonMedicos.setBounds(280, 100, 80, 60);
 
@@ -187,6 +193,7 @@ public class HomeFrame extends javax.swing.JFrame {
     private void buttonEspecialidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEspecialidadesActionPerformed
         especialidadePanel.setVisible(true);
         panelHome.setVisible(false);
+        medicoPanel.setVisible(false);
         planosDeSaudePanel.setVisible(false);
         mudarCorDoButton();
         buttonEspecialidades.setBackground(new java.awt.Color(255,102,102));
@@ -194,6 +201,7 @@ public class HomeFrame extends javax.swing.JFrame {
 
     private void buttonPlanosDeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPlanosDeSaudeActionPerformed
         panelHome.setVisible(false);
+        medicoPanel.setVisible(false);
         planosDeSaudePanel.setVisible(true);
         mudarCorDoButton();
         buttonPlanosDeSaude.setBackground(new java.awt.Color(255, 102, 102));
@@ -211,6 +219,15 @@ public class HomeFrame extends javax.swing.JFrame {
     private void buttonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSairActionPerformed
         dispose();
     }//GEN-LAST:event_buttonSairActionPerformed
+
+    private void buttonMedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMedicosActionPerformed
+             medicoPanel.setVisible(true);
+             panelHome.setVisible(false);
+             planosDeSaudePanel.setVisible(false);
+             especialidadePanel.setVisible(false);
+             mudarCorDoButton();
+             buttonMedicos.setBackground(new java.awt.Color(255, 102, 102));
+    }//GEN-LAST:event_buttonMedicosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAgenda1;
@@ -247,12 +264,20 @@ public class HomeFrame extends javax.swing.JFrame {
                 POSICAO_X, POSICAO_Y,
                 POSICAO_LARGURA, POSICAO_ALTURA);
         getContentPane().add(especialidadePanel);
+        
+        medicoPanel = new MedicoPanel();
+        medicoPanel.setBounds(POSICAO_X, 
+                POSICAO_Y, 
+                POSICAO_LARGURA, POSICAO_ALTURA);
+        getContentPane().add(medicoPanel);
+        
     }
 
     private void mudarCorDoButton() {
         buttonHome.setBackground(new java.awt.Color(255, 255, 255));
         buttonPlanosDeSaude.setBackground(new java.awt.Color(255, 255, 255));
         buttonEspecialidades.setBackground(new java.awt.Color(255, 255, 255));
+        buttonMedicos.setBackground(new java.awt.Color(255, 255, 255));
     }
 
 }
