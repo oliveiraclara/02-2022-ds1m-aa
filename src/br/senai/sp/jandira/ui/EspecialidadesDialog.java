@@ -43,15 +43,12 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
         labelDescricao = new javax.swing.JLabel();
         labelCodigo = new javax.swing.JLabel();
         labelNomeDaEspecialidade = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        textDescricao = new javax.swing.JTextPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        textFieldCodigo = new javax.swing.JTextPane();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        textNomeDaEspecialidade = new javax.swing.JTextPane();
         buttonCancelar = new javax.swing.JButton();
         buttonSalvar = new javax.swing.JButton();
         labelDetalhesDaEspecialidade = new javax.swing.JLabel();
+        textNomeDaEspecialidade = new javax.swing.JTextField();
+        textDescricao = new javax.swing.JTextField();
+        textFieldCodigo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -89,22 +86,6 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
         jPanel2.add(labelNomeDaEspecialidade);
         labelNomeDaEspecialidade.setBounds(20, 100, 50, 16);
 
-        jScrollPane1.setViewportView(textDescricao);
-
-        jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(20, 180, 260, 22);
-
-        textFieldCodigo.setEditable(false);
-        jScrollPane2.setViewportView(textFieldCodigo);
-
-        jPanel2.add(jScrollPane2);
-        jScrollPane2.setBounds(20, 70, 80, 22);
-
-        jScrollPane3.setViewportView(textNomeDaEspecialidade);
-
-        jPanel2.add(jScrollPane3);
-        jScrollPane3.setBounds(20, 120, 260, 22);
-
         buttonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/delete.png"))); // NOI18N
         buttonCancelar.setToolTipText("Cancelar");
         buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -128,6 +109,25 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
         labelDetalhesDaEspecialidade.setText("Detalhes da Especialidade:");
         jPanel2.add(labelDetalhesDaEspecialidade);
         labelDetalhesDaEspecialidade.setBounds(20, 10, 150, 16);
+        jPanel2.add(textNomeDaEspecialidade);
+        textNomeDaEspecialidade.setBounds(20, 120, 260, 22);
+
+        textDescricao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textDescricaoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(textDescricao);
+        textDescricao.setBounds(20, 190, 260, 22);
+
+        textFieldCodigo.setEditable(false);
+        textFieldCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldCodigoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(textFieldCodigo);
+        textFieldCodigo.setBounds(20, 70, 64, 22);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(20, 110, 630, 300);
@@ -147,6 +147,14 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
             atualizar();
         }
     }//GEN-LAST:event_buttonSalvarActionPerformed
+
+    private void textDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textDescricaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textDescricaoActionPerformed
+
+    private void textFieldCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldCodigoActionPerformed
     private void atualizar(){
         especialidade.setNome(textNomeDaEspecialidade.getText());
         especialidade.setDescricao(textDescricao.getText());
@@ -200,16 +208,13 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
     private javax.swing.JLabel iconTitulo1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel labelCodigo;
     private javax.swing.JLabel labelDescricao;
     private javax.swing.JLabel labelDetalhesDaEspecialidade;
     private javax.swing.JLabel labelNomeDaEspecialidade;
     private javax.swing.JLabel labelTitulo1;
-    private javax.swing.JTextPane textDescricao;
-    private javax.swing.JTextPane textFieldCodigo;
-    private javax.swing.JTextPane textNomeDaEspecialidade;
+    private javax.swing.JTextField textDescricao;
+    private javax.swing.JTextField textFieldCodigo;
+    private javax.swing.JTextField textNomeDaEspecialidade;
     // End of variables declaration//GEN-END:variables
 }

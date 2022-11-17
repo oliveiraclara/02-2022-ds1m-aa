@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Medico extends Pessoa{
@@ -8,6 +9,7 @@ public class Medico extends Pessoa{
     private Integer codigo;
     private String crm;
     private String especialidade;
+    private LocalDate dataDeNascimento;
     private ArrayList<Especialidade> especialidades;
     
     
@@ -81,6 +83,10 @@ public class Medico extends Pessoa{
     public String getMedicoSeparadoPorPontoEVirgula() {
     String medicoStr = this.codigo + ";" + this.nome  + ";" + this.especialidades;
     return medicoStr;
+    }
+
+    public void getEmail(String text) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

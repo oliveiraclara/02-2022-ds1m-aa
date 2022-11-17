@@ -46,15 +46,12 @@ public class PlanosDeSaudeDialog extends javax.swing.JDialog {
         tipoDoPlano = new javax.swing.JLabel();
         labelCodigo = new javax.swing.JLabel();
         nomeDoPlano = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        textTipoDoPlano = new javax.swing.JTextPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        textFieldCodigo = new javax.swing.JTextPane();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        textNomeDaOperadora = new javax.swing.JTextPane();
         buttonCancelar = new javax.swing.JButton();
         buttonSalvar = new javax.swing.JButton();
         detalhesPlanoDeSaude = new javax.swing.JLabel();
+        textFieldCodigo = new javax.swing.JTextField();
+        textTipoDoPlano = new javax.swing.JTextField();
+        textNomeDaOperadora = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -91,22 +88,6 @@ public class PlanosDeSaudeDialog extends javax.swing.JDialog {
         jPanel2.add(nomeDoPlano);
         nomeDoPlano.setBounds(20, 100, 50, 16);
 
-        jScrollPane1.setViewportView(textTipoDoPlano);
-
-        jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(20, 180, 260, 22);
-
-        textFieldCodigo.setEditable(false);
-        jScrollPane2.setViewportView(textFieldCodigo);
-
-        jPanel2.add(jScrollPane2);
-        jScrollPane2.setBounds(20, 70, 80, 22);
-
-        jScrollPane3.setViewportView(textNomeDaOperadora);
-
-        jPanel2.add(jScrollPane3);
-        jScrollPane3.setBounds(20, 120, 260, 22);
-
         buttonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/delete.png"))); // NOI18N
         buttonCancelar.setToolTipText("Cancelar");
         buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -130,6 +111,31 @@ public class PlanosDeSaudeDialog extends javax.swing.JDialog {
         detalhesPlanoDeSaude.setText("Detalhes do Plano de Saúde ");
         jPanel2.add(detalhesPlanoDeSaude);
         detalhesPlanoDeSaude.setBounds(20, 10, 150, 16);
+
+        textFieldCodigo.setEditable(false);
+        textFieldCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldCodigoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(textFieldCodigo);
+        textFieldCodigo.setBounds(20, 70, 71, 22);
+
+        textTipoDoPlano.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textTipoDoPlanoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(textTipoDoPlano);
+        textTipoDoPlano.setBounds(20, 190, 260, 22);
+
+        textNomeDaOperadora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textNomeDaOperadoraActionPerformed(evt);
+            }
+        });
+        jPanel2.add(textNomeDaOperadora);
+        textNomeDaOperadora.setBounds(20, 120, 260, 22);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(20, 110, 630, 300);
@@ -197,6 +203,18 @@ public class PlanosDeSaudeDialog extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
+    private void textFieldCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldCodigoActionPerformed
+
+    private void textNomeDaOperadoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNomeDaOperadoraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textNomeDaOperadoraActionPerformed
+
+    private void textTipoDoPlanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textTipoDoPlanoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textTipoDoPlanoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCancelar;
     private javax.swing.JButton buttonSalvar;
@@ -204,15 +222,12 @@ public class PlanosDeSaudeDialog extends javax.swing.JDialog {
     private javax.swing.JLabel iconTitulo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel labelCodigo;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JLabel nomeDoPlano;
-    private javax.swing.JTextPane textFieldCodigo;
-    private javax.swing.JTextPane textNomeDaOperadora;
-    private javax.swing.JTextPane textTipoDoPlano;
+    private javax.swing.JTextField textFieldCodigo;
+    private javax.swing.JTextField textNomeDaOperadora;
+    private javax.swing.JTextField textTipoDoPlano;
     private javax.swing.JLabel tipoDoPlano;
     // End of variables declaration//GEN-END:variables
 }

@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class MedicoDAO {
-     private Medico medico;
+  private Medico medico;
     private static ArrayList<Medico> medicos = new ArrayList<>();
 
     private final static String ARQUIVO = "C:\\Users\\22282080\\JavaProject\\medico.txt";
@@ -29,6 +29,7 @@ public class MedicoDAO {
     public MedicoDAO() {
 
     }
+
     public static void gravar(Medico medico) {
         medicos.add(medico);
 
@@ -38,9 +39,9 @@ public class MedicoDAO {
                     StandardOpenOption.APPEND,
                     StandardOpenOption.WRITE);
 
-            String novoPlanoDeSaude = medico.getMedicoSeparadoPorPontoEVirgula();
+            String novoMedico = medico.getMedicoSeparadoPorPontoEVirgula();
 
-            bw.write(novoPlanoDeSaude);
+            bw.write(novoMedico);
             bw.newLine();
             bw.close();
 
@@ -113,33 +114,33 @@ public class MedicoDAO {
     public static ArrayList<Medico> listarTodos() {
         return medicos;
     }
-     
-    public static void getMedicos() {
+
+    public static void getListaMedicos() {
         try {
+            //Abir o arquivo para leitura - LEITOR
             BufferedReader br = Files.newBufferedReader(PATH);
 
             String linha = br.readLine();
 
             while (linha != null && !linha.isEmpty()) {
                 String[] linhaVetor = linha.split(";");
-                Medico novaEspecialidade = new Medico(
+                Medico novoMedico = new Medico(
                         Integer.valueOf(linhaVetor[0]),
                         linhaVetor[1],
                         linhaVetor[2]);
-                medicos.add(novaEspecialidade);
+                medicos.add(novoMedico);
                 linha = br.readLine();
             }
             br.close();
-
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null,
+            JOptionPane.showMessageDialog(
+                    null,
                     "Ocorreu um erro ao abrir o arquivo",
                     "Erro de leitura",
                     JOptionPane.ERROR_MESSAGE);
         }
-
     }
-    
+
     public static DefaultTableModel getTableModel() {
 
         // Matriz que receberá os planos de saúde
@@ -151,8 +152,8 @@ public class MedicoDAO {
         int i = 0;
         for (Medico m : medicos) {
             dados[i][0] = m.getCodigo();
-            dados[1][1] = m.getNome();
-            dados[i][2] = m.getEspecialidades();
+            dados[i][1] = m.getNome();
+            dados[i][2] = m.getEspecialidade();
             i++;
         }
 
@@ -166,6 +167,4 @@ public class MedicoDAO {
         return tableModel;
 
     }
-    
-    
 }

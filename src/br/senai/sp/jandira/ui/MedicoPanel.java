@@ -5,7 +5,9 @@
 package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.MedicoDAO;
+import br.senai.sp.jandira.model.Medico;
 import br.senai.sp.jandira.model.TipoOperacao;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 /**
@@ -13,10 +15,9 @@ import javax.swing.JTable;
  * @author 22282080
  */
 public class MedicoPanel extends javax.swing.JPanel {
-
-    /**
-     * Creates new form MedicoPanel
-     */
+    
+    int linha;
+    
     public MedicoPanel() {
         initComponents();
         criarTabelaMedico();
@@ -91,7 +92,16 @@ public class MedicoPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonAlterarPlanoDeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAlterarPlanoDeSaudeActionPerformed
-  
+        linha = tableMedico.getSelectedRow();
+        if (linha != -1) {
+            editar();
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Por favor, selecione o médico que você deseja alterar",
+                    "Plano de saúde",
+                    JOptionPane.WARNING_MESSAGE);
+          criarTabelaMedico();
+        }
     }//GEN-LAST:event_buttonAlterarPlanoDeSaudeActionPerformed
 
     private void buttonAdicionarPlanoDeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarPlanoDeSaudeActionPerformed
@@ -105,9 +115,48 @@ public class MedicoPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_buttonAdicionarPlanoDeSaudeActionPerformed
 
     private void buttonExcluirPlanoDeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirPlanoDeSaudeActionPerformed
-      
+      linha = tableMedico.getSelectedRow();
+        if (linha != -1) {
+            excluir();
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Por favor, selecione o médicp que você deseja excluir",
+                    "Médico",
+                    JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_buttonExcluirPlanoDeSaudeActionPerformed
 
+    private void editar() {
+        Medico medico = MedicoDAO.getMedico(getCodigoSelecionado());
+        MedicoDialog medicoDialog = new MedicoDialog(
+                null,
+                true,
+                TipoOperacao.ALTERAR,
+                medico);
+        medicoDialog.setVisible(true);
+    }
+
+    private void excluir() { 
+        int resposta = JOptionPane.showConfirmDialog(this,
+                "Você confirma a exclusão do médico?",
+                "Médico",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+        if (resposta == 0) {
+            String codigoStr = tableMedico.getValueAt(linha, 0).toString();
+            Integer codigo = Integer.valueOf(codigoStr);
+            MedicoDAO.excluir(codigo);
+            criarTabelaMedico();
+            
+        }
+    }
+
+    private Integer getCodigoSelecionado() {
+        String codigoStr = tableMedico.getValueAt(linha, 0).toString();
+        return Integer.valueOf(codigoStr);
+        
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdicionarPlanoDeSaude;
