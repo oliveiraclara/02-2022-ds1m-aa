@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.dao;
 
+import br.senai.sp.jandira.model.Especialidade;
 import br.senai.sp.jandira.model.Medico;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,9 +36,9 @@ public class MedicoDAO {
     }
 
     public static void gravar(Medico medico) {
-        medicos.add(medico);
 
         try {
+            medicos.add(medico);
             BufferedWriter bw = Files.newBufferedWriter(
                     PATH,
                     StandardOpenOption.APPEND,
@@ -49,9 +51,10 @@ public class MedicoDAO {
             bw.close();
 
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "");
+            JOptionPane.showMessageDialog(null, "ERRO");
 
         }
+        medicos.add(medico);
     }
 
     public static boolean excluir(Integer codigo) {
@@ -121,26 +124,43 @@ public class MedicoDAO {
 
     public static void getListaMedico() {
         try {
-            //Abir o arquivo para leitura - LEITOR
+            // abriro arquivo para leitura - LEITOR
             BufferedReader br = Files.newBufferedReader(PATH);
 
             String linha = br.readLine();
 
             while (linha != null && !linha.isEmpty()) {
                 String[] linhaVetor = linha.split(";");
+
+                int i = 0;
+                ArrayList<Especialidade> especialidades = new ArrayList<>();
+                while (linhaVetor.length > i + 6) {
+                    especialidades.add(EspecialidadeDAO.getEspecialidade(Integer.valueOf(linhaVetor[6 + i])));
+                    i++;
+                }
+
+                String[] data = linhaVetor[6].split("/");
+                int ano = Integer.parseInt(data[2]);
+                int mes = Integer.parseInt(data[1]);
+                int dia = Integer.parseInt(data[0]);
+                LocalDate dataNascimento = LocalDate.of(ano, mes, dia);
+
                 Medico novoMedico = new Medico(
-                        Integer.valueOf(linhaVetor[0]),
+                        linhaVetor[0],
                         linhaVetor[1],
-                        linhaVetor[2]);
-                medicos.add(novoMedico);
+                        linhaVetor[2],
+                        linhaVetor[3],
+                        LocalDate.MIN,
+                        especialidades);
+
                 linha = br.readLine();
             }
             br.close();
+
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(
-                    null,
-                    "Ocorreu um erro ao abrir o arquivo",
-                    "Erro de leitura",
+            JOptionPane.showMessageDialog(null,
+                    "Ocorreu um erro ao abrir o arquivo.",
+                    "ERRO",
                     JOptionPane.ERROR_MESSAGE);
         }
     }

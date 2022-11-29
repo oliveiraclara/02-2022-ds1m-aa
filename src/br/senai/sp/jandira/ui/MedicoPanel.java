@@ -105,13 +105,10 @@ public class MedicoPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_buttonAlterarPlanoDeSaudeActionPerformed
 
     private void buttonAdicionarPlanoDeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarPlanoDeSaudeActionPerformed
-    MedicoDialog medicoDialog = new MedicoDialog(
-                null,
-                true,
-                TipoOperacao.ADICIONAR,
-                null);
-        medicoDialog.setVisible(true);
-        criarTabelaMedico();
+    MedicoDialog dialogmedico = new MedicoDialog(null, true, TipoOperacao.ADICIONAR,null);
+            dialogmedico.setVisible(true);
+            
+            criarTabelaMedico();
     }//GEN-LAST:event_buttonAdicionarPlanoDeSaudeActionPerformed
 
     private void buttonExcluirPlanoDeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirPlanoDeSaudeActionPerformed
@@ -127,34 +124,39 @@ public class MedicoPanel extends javax.swing.JPanel {
             criarTabelaMedico();
         }
     }//GEN-LAST:event_buttonExcluirPlanoDeSaudeActionPerformed
-     private void editar() {
+     private void editar(){
+        
         Medico medico = MedicoDAO.getMedico(getCodigoSelecionado());
-        MedicoDialog medicoDialog = new MedicoDialog(
-                null,
-                true,
+        
+        MedicoDialog dialogMedico = new MedicoDialog(null, true,
                 TipoOperacao.ALTERAR,
                 medico);
-        medicoDialog.setVisible(true);
+        dialogMedico.setVisible(true);
+        criarTabelaMedico();
     }
-
-    private void excluir() { 
+    
+    private void excluir(){
         int resposta = JOptionPane.showConfirmDialog(this,
-                "Você confirma a exclusão do médico?",
-                "Médico",
+                "Você confirma a exclusaõ do Médico(a) selecionado?",
+                "Médico(a)",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE);
-        if (resposta == 0) {
-            String codigoStr = tableMedico.getValueAt(linha, 0).toString();
-            Integer codigo = Integer.valueOf(codigoStr);
-           MedicoDAO.excluir(codigo);
-            criarTabelaMedico();
+        
+        if(resposta == 0){
+             String codiStr = tableMedico.getValueAt(linha, 0).toString();
+        Integer codigo = Integer.valueOf(codiStr);
+        MedicoDAO.excluir(codigo);
+        criarTabelaMedico();
+        
         }
+        
+    }
+    private Integer getCodigoSelecionado(){
+        String codiStr = tableMedico.getValueAt(linha, 0).toString();
+        return Integer.valueOf(codiStr);
+        
     }
 
-    private Integer getCodigoSelecionado() {
-        String codigoStr = tableMedico.getValueAt(linha, 0).toString();
-        return Integer.valueOf(codigoStr);
-    }
     
     
 

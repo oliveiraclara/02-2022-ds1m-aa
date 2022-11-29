@@ -21,13 +21,19 @@ import javax.swing.table.DefaultTableModel;
 
 public class EspecialidadeDAO {
 
-    private Especialidade especialidade;
+   private Especialidade especialidade;
     private static ArrayList<Especialidade> especialidades = new ArrayList<>();
 
     private final static String ARQUIVO = "C:\\Users\\22282080\\JavaProject\\especialidade.txt";
     private final static String ARQUIVO_TEMP = "C:\\Users\\22282080\\JavaProject\\especialidade_temp.txt";
     private final static Path PATH = Paths.get(ARQUIVO);
     private final static Path PATH_TEMP = Paths.get(ARQUIVO_TEMP);
+    
+    public EspecialidadeDAO(Especialidade especialidade) {
+        this.especialidades.add(especialidade);
+
+    }
+
 
     public EspecialidadeDAO() {
 
