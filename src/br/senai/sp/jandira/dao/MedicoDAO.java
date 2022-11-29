@@ -10,11 +10,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class MedicoDAO {
-  private Medico medico;
+
+    private Medico medico;
     private static ArrayList<Medico> medicos = new ArrayList<>();
 
     private final static String ARQUIVO = "C:\\Users\\22282080\\JavaProject\\medico.txt";
@@ -61,36 +64,37 @@ public class MedicoDAO {
         atualizarCodigo();
         return false;
     }
-     private static void atualizarCodigo(){
-         File arquivoAtual = new File(ARQUIVO);
-            File arquivoTemp = new File(ARQUIVO_TEMP);
-            
-            try {
-                arquivoTemp.createNewFile();
-                
-                BufferedWriter bwTemp = Files.newBufferedWriter(PATH_TEMP, 
-                        StandardOpenOption.APPEND, 
-                        StandardOpenOption.WRITE);
-                
-                for(Medico m: medicos){
-                    bwTemp.write(m.getMedicoSeparadoPorPontoEVirgula());
-                    bwTemp.newLine();
-                }
-                
-                bwTemp.close();
-                
-                arquivoAtual.delete();
-                
-                arquivoTemp.renameTo(arquivoAtual);
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(
-                        null, 
-                        "Ocorreu um erro ao criar o arquivo", 
-                        "Erro", 
-                        JOptionPane.ERROR_MESSAGE);
+
+    private static void atualizarCodigo() {
+        File arquivoAtual = new File(ARQUIVO);
+        File arquivoTemp = new File(ARQUIVO_TEMP);
+
+        try {
+            arquivoTemp.createNewFile();
+
+            BufferedWriter bwTemp = Files.newBufferedWriter(PATH_TEMP,
+                    StandardOpenOption.APPEND,
+                    StandardOpenOption.WRITE);
+
+            for (Medico m : medicos) {
+                bwTemp.write(m.getMedicoSeparadoPorPontoEVirgula());
+                bwTemp.newLine();
             }
-     }
-    
+
+            bwTemp.close();
+
+            arquivoAtual.delete();
+
+            arquivoTemp.renameTo(arquivoAtual);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Ocorreu um erro ao criar o arquivo",
+                    "Erro",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     public static Medico getMedico(Integer codigo) {
 
         for (Medico m : medicos) {
@@ -115,7 +119,7 @@ public class MedicoDAO {
         return medicos;
     }
 
-    public static void getListaMedicos() {
+    public static void getListaMedico() {
         try {
             //Abir o arquivo para leitura - LEITOR
             BufferedReader br = Files.newBufferedReader(PATH);
@@ -167,4 +171,5 @@ public class MedicoDAO {
         return tableModel;
 
     }
+
 }

@@ -15,14 +15,12 @@ import javax.swing.JTable;
  * @author 22282080
  */
 public class MedicoPanel extends javax.swing.JPanel {
-    
     int linha;
-    
+
     public MedicoPanel() {
         initComponents();
         criarTabelaMedico();
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -95,13 +93,15 @@ public class MedicoPanel extends javax.swing.JPanel {
         linha = tableMedico.getSelectedRow();
         if (linha != -1) {
             editar();
+            criarTabelaMedico();
         } else {
             JOptionPane.showMessageDialog(this,
                     "Por favor, selecione o médico que você deseja alterar",
-                    "Plano de saúde",
+                    "Médico",
                     JOptionPane.WARNING_MESSAGE);
-          criarTabelaMedico();
+            criarTabelaMedico();
         }
+        
     }//GEN-LAST:event_buttonAlterarPlanoDeSaudeActionPerformed
 
     private void buttonAdicionarPlanoDeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarPlanoDeSaudeActionPerformed
@@ -118,15 +118,16 @@ public class MedicoPanel extends javax.swing.JPanel {
       linha = tableMedico.getSelectedRow();
         if (linha != -1) {
             excluir();
+            criarTabelaMedico();
         } else {
             JOptionPane.showMessageDialog(this,
-                    "Por favor, selecione o médicp que você deseja excluir",
+                    "Por favor, selecione o médico que você deseja excluir",
                     "Médico",
                     JOptionPane.WARNING_MESSAGE);
+            criarTabelaMedico();
         }
     }//GEN-LAST:event_buttonExcluirPlanoDeSaudeActionPerformed
-
-    private void editar() {
+     private void editar() {
         Medico medico = MedicoDAO.getMedico(getCodigoSelecionado());
         MedicoDialog medicoDialog = new MedicoDialog(
                 null,
@@ -145,17 +146,16 @@ public class MedicoPanel extends javax.swing.JPanel {
         if (resposta == 0) {
             String codigoStr = tableMedico.getValueAt(linha, 0).toString();
             Integer codigo = Integer.valueOf(codigoStr);
-            MedicoDAO.excluir(codigo);
+           MedicoDAO.excluir(codigo);
             criarTabelaMedico();
-            
         }
     }
 
     private Integer getCodigoSelecionado() {
         String codigoStr = tableMedico.getValueAt(linha, 0).toString();
         return Integer.valueOf(codigoStr);
-        
     }
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
